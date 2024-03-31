@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .order-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-details h3 {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-details table th,
+        .order-details table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-details table th {
+            text-align: left;
+        }
+
+        .btn {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for product image */
+        #product-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        #product-image:hover {
+            transform: scale(1.1);
+        }
+
+        /* Customized form inputs */
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+        }
+
+        /* Customized alerts */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Place Order</h2>
+        <div class="order-details">
+            <h3>Product Details</h3>
+            <form action="confirmationmsg.html" method="POST" id="order-form">
+                <!-- Product image display -->
+                <img src="" alt="Product Image" id="product-image">
+
+                <div class="mb-3">
+                    <label for="product-name" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="product-name" name="product-name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+            <p style="margin-top: 10px;">Please note: We have only cash on delivery option available.</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            alert("Please note that you can only place one product at a time.");
+        };
+
+        const productData = {
+            "IPHONE 15 PRO MAX": {
+                name: "IPHONE 15 PRO MAX",
+                price: "₹84,000/-",
+                image: "Photo.QQiR5cyr_rlh7UnQObZ3tQHaE8"
+            },
+            "DELL INSPIRON 15": {
+                name: "DELL INSPIRON 15",
+                price: "₹60,000/-",
+                image: "Laptop.jpg"
+            },
+            "Canon EOS R8": {
+                name: "Canon EOS R8",
+                price: "₹1,52,989/-",
+                image: "Camera.jpg"
+            },
+            "Bt speaker with 30w setero": {
+                name: "Bt speaker with 30w setero",
+                price: "₹8,823/-",
+                image: "Speaker.jpeg"
+            },
+            "2023 50” QN90C Neo QLED 4K HDR Smart TV": {
+                name: "2023 50” QN90C Neo QLED 4K HDR Smart TV",
+                price: "₹94,159.37/-",
+                image: "Tv.jpeg"
+            },
+            "NEXCEN AirPods Pro": {
+                name: "NEXCEN AirPods Pro",
+                price: "₹1,300/-",
+                image: "Airpods.jpeg"
+            },
+            "Aqua Guard Nrich HD RO Water Purifier": {
+                name: "Aqua Guard Nrich HD RO Water Purifier",
+                price: "₹24,490/-",
+                image: "Purifier.jpeg"
+            },
+            "Daikin 1.5 Ton 3 Star Inverter Split AC": {
+                name: "Daikin 1.5 Ton 3 Star Inverter Split AC",
+                price: "₹36,990/-",
+                image: "Ac.jpeg"
+            },
+            "Frigidaire Gallery 18.6-cu ft Freezerless Refrigerato": {
+                name: "Frigidaire Gallery 18.6-cu ft Freezerless Refrigerato",
+                price: "₹2,49,841/-",
+                image: "freezer.webp"
+            }
+        };
+
+        function autofillProductDetails() {
+            const productNameInput = document.getElementById('product-name');
+            const priceInput = document.getElementById('price');
+            const productImage = document.getElementById('product-image');
+
+            const productName = productNameInput.value.trim();
+
+            if (productName in productData) {
+                const product = productData[productName];
+                priceInput.value = product.price;
+                productImage.src = product.image; // Set product image source
+            } else {
+                priceInput.value = '';
+                productImage.src = ''; // Clear product image source
+            }
+        }
+
+        document.getElementById('product-name').addEventListener('input', autofillProductDetails);
+
+        const orderForm = document.getElementById('order-form');
+        orderForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const now = new Date();
+            const deliveryDate = new Date(now.getTime() + 10 * 60000);
+            const formattedDate = deliveryDate.toLocaleDateString();
+            alert('Your order will be delivered on ' + formattedDate);
+            window.location.href = 'confirmationmsg.html'; // Redirect to confirmationmsg.html
+        });
+    </script>
+</body>
+</html>
